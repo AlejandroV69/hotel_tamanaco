@@ -433,6 +433,10 @@ legend {
     font-size: 1.2rem;
 }
 
+.chart-card.large {
+    grid-column: 1 / -1;
+}
+
 @media (max-width: 600px) {
     .dashboard-grid {
         grid-template-columns: 1fr;
