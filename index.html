@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Tamanaco - Caracas</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <!-- Placeholder for icons if needed, or use SVG -->
+</head>
+
+<body>
+    <div class="app-container">
+        <header class="main-header">
+            <div class="logo-container">
+                <h1>HOTEL TAMANACO</h1>
+                <p>CARACAS, VENEZUELA</p>
+            </div>
+            <nav class="main-nav">
+                <button class="nav-btn active" data-tab="inicio">Inicio</button>
+                <button class="nav-btn" data-tab="encuesta">Encuesta</button>
+                <button class="nav-btn" data-tab="resultados">Resultados</button>
+                <button class="nav-btn" data-tab="opiniones">Opiniones</button>
+            </nav>
+        </header>
+
+        <main class="content-area">
+            <!-- SECCIÓN INICIO -->
+            <section id="inicio" class="tab-content active">
+                <div class="hero-section">
+                    <div class="hero-content">
+                        <h2>Bienvenido a la Excelencia</h2>
+                        <p>Disfrute de una experiencia inolvidable en el corazón de Caracas. Lujo, confort y el mejor
+                            servicio le esperan.</p>
+                        <button class="cta-btn"
+                            onclick="document.querySelector('[data-tab=\'satisfaccion\']').click()">Evalúanos</button>
+                    </div>
+                </div>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <h3>Ubicación Privilegiada</h3>
+                        <p>Situado en el centro financiero y cultural, con las mejores vistas de El Ávila.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Gastronomía Mundial</h3>
+                        <p>Restaurantes de primera clase con chefs internacionales.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Relax & Spa</h3>
+                        <p>Un santuario de tranquilidad para renovar cuerpo y mente.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECCIÓN SATISFACCIÓN -->
+            <section id="encuesta" class="tab-content">
+                <div class="form-container">
+                    <h2>Encuesta de Satisfacción</h2>
+                    <p>Su opinión es vital para nosotros. Ayúdenos a mejorar.</p>
+
+                    <form id="survey-form">
+                        <!-- 🔹 DATOS GENERALES -->
+                        <fieldset>
+                            <legend>Datos Generales (Opcional)</legend>
+                            <div class="form-group">
+                                <label for="guest_name">Nombre y Apellido:</label>
+                                <input type="text" id="guest_name" name="guest_name" placeholder="Ej. Juan Pérez">
+                            </div>
+                            <div class="form-group">
+                                <label for="room_number">Número de Habitación:</label>
+                                <input type="number" id="room_number" name="room_number" placeholder="Ej. 101">
+                            </div>
+                            <div class="form-group">
+                                <label>Tipo de huésped:</label>
+                                <div class="radio-group">
+                                    <label><input type="radio" name="guest_type" value="turista"> Turista</label>
+                                    <label><input type="radio" name="guest_type" value="negocios"> Negocios</label>
+                                    <label><input type="radio" name="guest_type" value="evento"> Evento</label>
+                                    <label><input type="radio" name="guest_type" value="otro"> Otro</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>¿Es su primera vez en el hotel?</label>
+                                <div class="radio-group">
+                                    <label><input type="radio" name="first_time" value="si"> Sí</label>
+                                    <label><input type="radio" name="first_time" value="no"> No</label>
+                                </div>
+                            </div>
+                        </fieldset>
+
+                        <!-- 🏨 1️⃣ RECEPCIÓN Y CHECK-IN -->
+                        <fieldset>
+                            <legend>1. Recepción y Check-in</legend>
+                            <div class="rating-group">
+                                <label>¿Cómo califica la rapidez del proceso de check-in?</label>
+                                <div class="stars-input" data-name="checkin_speed"></div>
+                            </div>
+                            <div class="rating-group">
+                                <label>¿Cómo evalúa la amabilidad del personal de recepción?</label>
+                                <div class="stars-input" data-name="reception_kindness"></div>
+                            </div>
+                            <div class="rating-group">
+                                <label>¿Recibió información clara sobre los servicios del hotel?</label>
+                                <div class="stars-input" data-name="info_clarity"></div>
+                            </div>
+                            <div class="rating-group">
+                                <label>¿Cómo califica la organización del área de recepción?</label>
+                                <div class="stars-input" data-name="reception_org"></div>
+                            </div>
+                        </fieldset>
+
+                        <!-- 🛏️ 2️⃣ HABITACIONES -->
+                        <fieldset>
+                            <legend>2. Habitaciones</legend>
+                            <div class="rating-group">
+                                <label>¿Cómo califica la limpieza de la habitación?</label>
+                                <div class="stars-input" data-name="room_cleanliness"></div>
+                            </div>
+                            <div class="rating-group">
+                                <label>¿La habitación cumplió con sus expectativas?</label>
+                                <div class="stars-input" data-name="room_expectations"></div>
+                            </div>
+                            <div class="rating-group">
+                                <label>¿Los servicios (aire acondicionado, baño, TV) funcionaron correctamente?</label>
+                                <div class="stars-input" data-name="room_services"></div>
+                            </div>
+                            <div class="rating-group">
+                                <label>¿Cómo evalúa el nivel de confort general?</label>
+                                <div class="stars-input" data-name="room_comfort"></div>
+                            </div>
+                        </fieldset>
+
+                        <!-- 🍽️ 3️⃣ RESTAURANTE Y ALIMENTACIÓN -->
+                        <fieldset>
+                            <legend>3. Restaurante y Alimentación</legend>
+                            <div class="rating-group">
+                                <label>¿Cómo califica la calidad de los alimentos?</label>
+                                <div class="stars-input" data-name="food_quality"></div>
+                            </div>
+                            <div class="rating-group">
+                                <label>¿El tiempo de atención fue adecuado?</label>
+                                <div class="stars-input" data-name="food_service_time"></div>
+                            </div>
+                            <div class="rating-group">
+                                <label>¿Cómo evalúa la amabilidad del personal del restaurante?</label>
+                                <div class="stars-input" data-name="restaurant_kindness"></div>
+                            </div>
+                            <div class="rating-group">
+                                <label>¿La limpieza del área fue satisfactoria?</label>
+                                <div class="stars-input" data-name="restaurant_cleanliness"></div>
+                            </div>
+                        </fieldset>
+
+                        <!-- 🧹 4️⃣ LIMPIEZA Y MANTENIMIENTO -->
+                        <fieldset>
+                            <legend>4. Limpieza y Mantenimiento</legend>
+                            <div class="rating-group">
+                                <label>¿Cómo califica la limpieza general del hotel?</label>
+                                <div class="stars-input" data-name="general_cleanliness"></div>
+                            </div>
+                            <div class="rating-group">
+                                <label>¿El servicio de limpieza fue puntual?</label>
+                                <div class="stars-input" data-name="cleaning_punctuality"></div>
+                            </div>
+                            <div class="form-group">
+                                <label>¿Reportó alguna falla durante su estadía?</label>
+                                <div class="radio-group">
+                                    <label><input type="radio" name="reported_fault" value="si" onchange="document.getElementById('fault_response').style.display='block'"> Sí</label>
+                                    <label><input type="radio" name="reported_fault" value="no" onchange="document.getElementById('fault_response').style.display='none'"> No</label>
+                                </div>
+                            </div>
+                            <div class="rating-group" id="fault_response" style="display:none;">
+                                <label>En caso afirmativo, ¿la falla fue atendida oportunamente?</label>
+                                <div class="stars-input" data-name="fault_resolution"></div>
+                            </div>
+                        </fieldset>
+
+                        <!-- 👥 5️⃣ ATENCIÓN DEL PERSONAL -->
+                        <fieldset>
+                            <legend>5. Atención del Personal</legend>
+                            <div class="rating-group">
+                                <label>¿Cómo califica la amabilidad del personal en general?</label>
+                                <div class="stars-input" data-name="staff_kindness"></div>
+                            </div>
+                            <div class="rating-group">
+                                <label>¿El personal mostró disposición para ayudarle?</label>
+                                <div class="stars-input" data-name="staff_helpfulness"></div>
+                            </div>
+                            <div class="rating-group">
+                                <label>¿Recibió una atención respetuosa y profesional?</label>
+                                <div class="stars-input" data-name="staff_professionalism"></div>
+                            </div>
+                            <div class="rating-group">
+                                <label>¿Se sintió bien atendido durante su estadía?</label>
+                                <div class="stars-input" data-name="staff_care"></div>
+                            </div>
+                        </fieldset>
+
+                        <!-- ⭐ 6️⃣ SATISFACCIÓN GENERAL -->
+                        <fieldset>
+                            <legend>6. Satisfacción General</legend>
+                            <div class="rating-group">
+                                <label>¿Qué tan satisfecho se siente con su experiencia en el hotel?</label>
+                                <div class="stars-input" data-name="overall_satisfaction"></div>
+                            </div>
+                            <div class="form-group">
+                                <label>¿Recomendaría el Hotel Tamanaco a otras personas?</label>
+                                <div class="radio-group">
+                                    <label><input type="radio" name="recommend" value="si"> Sí</label>
+                                    <label><input type="radio" name="recommend" value="no"> No</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>¿Volvería a hospedarse en este hotel?</label>
+                                <div class="radio-group">
+                                    <label><input type="radio" name="return" value="si"> Sí</label>
+                                    <label><input type="radio" name="return" value="no"> No</label>
+                                </div>
+                            </div>
+                        </fieldset>
+
+                        <!-- ✍️ 7️⃣ COMENTARIOS Y SUGERENCIAS -->
+                        <fieldset>
+                            <legend>7. Comentarios y Sugerencias</legend>
+                            <div class="form-group">
+                                <label for="comments">¿Desea agregar algún comentario o sugerencia para mejorar nuestros servicios?</label>
+                                <textarea id="comments" rows="4" placeholder="Escriba aquí sus comentarios..."></textarea>
+                            </div>
+                        </fieldset>
+
+                        <button type="submit" class="submit-btn">Enviar Encuesta</button>
+                    </form>
+                </div>
+            </section>
+
+            <!-- SECCIÓN RESULTADOS -->
+            <section id="resultados" class="tab-content">
+                <div class="dashboard-header">
+                    <h2>Indicadores de Calidad</h2>
+                    <p>Monitoreo en tiempo real de la satisfacción del huésped.</p>
+                </div>
+                <div class="dashboard-grid">
+                    <div class="chart-card">
+                        <h3>Satisfacción General</h3>
+                        <canvas id="overallChart"></canvas>
+                    </div>
+                    <div class="chart-card">
+                        <h3>Desempeño por Área</h3>
+                        <canvas id="areaChart"></canvas>
+                    </div>
+                    <div class="chart-card">
+                        <h3>Limpieza vs Confort</h3>
+                        <canvas id="cleanlinessChart"></canvas>
+                    </div>
+                    <div class="chart-card">
+                        <h3>Servicio: Rapidez vs Amabilidad</h3>
+                        <canvas id="serviceChart"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECCIÓN OPINIONES -->
+            <section id="opiniones" class="tab-content">
+                <div class="reviews-header">
+                    <h2>Lo que dicen nuestros huéspedes</h2>
+                </div>
+                <div class="reviews-grid" id="reviews-container">
+                    <!-- Las reseñas se cargarán dinámicamente con JS -->
+                </div>
+            </section>
+        </main>
+
+        <footer class="main-footer">
+            <p>&copy; 2025 Hotel Tamanaco. Todos los derechos reservados.</p>
+        </footer>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
