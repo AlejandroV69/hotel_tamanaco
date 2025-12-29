@@ -125,7 +125,7 @@ body {
 .hero-section {
     text-align: center;
     padding: 4rem 0;
-    background: linear-gradient(rgba(2, 12, 27, 0.7), rgba(2, 12, 27, 0.7)), url('https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80');
+    background: linear-gradient(rgba(2, 12, 27, 0.7), rgba(2, 12, 27, 0.7)), url('hero-bg.png');
     /* Placeholder Hotel Image */
     background-size: cover;
     background-position: center;
