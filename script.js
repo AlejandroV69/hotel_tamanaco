@@ -1,24 +1,28 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // 1️⃣ Tab Switching Logic
+    // 1️⃣ Lógica de Cambio de Pestañas (Tab Switching)
+    // Funciones usadas: document.querySelectorAll() para seleccionar elementos, 
+    // y addEventListener('click') para detectar eventos de usuario.
     const navBtns = document.querySelectorAll('.nav-btn');
     const tabContents = document.querySelectorAll('.tab-content');
-    let isAuthenticated = false;
+    let isAuthenticated = false; // Estado de autenticación para la sección protegida
 
     navBtns.forEach(btn => {
         btn.addEventListener('click', () => {
-            const tabId = btn.getAttribute('data-tab');
+            const tabId = btn.getAttribute('data-tab'); // Método getAttribute() para leer datos personalizados
 
-            // 🔒 Password Protection
+            // 🔒 Protección por Contraseña
+            // Función usada: prompt() para pedir datos y condicional if/else para validar.
             if (tabId === 'resultados' && !isAuthenticated) {
                 const password = prompt("Ingrese la contraseña de administrador:");
                 if (password === "29863496") {
-                    isAuthenticated = true;
+                    isAuthenticated = true; // Acceso concedido
                 } else {
-                    alert("Contraseña incorrecta.");
-                    return;
+                    alert("Contraseña incorrecta."); // Función alert() para feedback de error
+                    return; // Detiene la navegación
                 }
             }
 
+            // Actualizar clases (classList.add/remove) para mostrar la pestaña seleccionada
             navBtns.forEach(b => b.classList.remove('active'));
             tabContents.forEach(c => c.classList.remove('active'));
             btn.classList.add('active');
@@ -26,9 +30,12 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 2️⃣ Generate Star Ratings dynamically
+    // 2️⃣ Generar Estrellas de Calificación Dinámicamente
+    // Funciones usadas: document.createElement() para crear elementos en memoria
+    // y appendChild() para agregarlos al DOM.
     document.querySelectorAll('.stars-input').forEach(container => {
         const name = container.dataset.name;
+        // Crea estrellas de 5 a 1 (orden inverso para CSS)
         for (let i = 5; i >= 1; i--) {
             const input = document.createElement('input');
             input.type = 'radio';
@@ -45,19 +52,19 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // 3️⃣ Dashboard Data State (In-Memory "Database")
-    // We initialize with some dummy data to simulate existing history
+    // 3️⃣ Estado de Datos del Dashboard (Base de Datos en Memoria)
+    // Inicializamos con datos de prueba para simular un historial existente
     const surveyStats = {
         submissions: 100,
-        overall: { 5: 65, 4: 25, 3: 10, 2: 0, 1: 0 }, // Star counts
+        overall: { 5: 65, 4: 25, 3: 10, 2: 0, 1: 0 }, // Conteo de estrellas
         areas: {
-            recepcion: { sum: 480, count: 100 }, // Average 4.8
-            habitaciones: { sum: 450, count: 100 }, // Average 4.5
-            restaurante: { sum: 420, count: 100 }, // Average 4.2
-            limpieza: { sum: 490, count: 100 }, // Average 4.9
-            personal: { sum: 470, count: 100 }  // Average 4.7
+            recepcion: { sum: 480, count: 100 }, // Promedio 4.8
+            habitaciones: { sum: 450, count: 100 }, // Promedio 4.5
+            restaurante: { sum: 420, count: 100 }, // Promedio 4.2
+            limpieza: { sum: 490, count: 100 }, // Promedio 4.9
+            personal: { sum: 470, count: 100 }  // Promedio 4.7
         },
-        // Historical data for line/bar charts (fixed length for demo)
+        // Datos históricos para gráficos de líneas/barras
         history: {
             cleanliness: [4.5, 4.6, 4.8, 4.7, 4.9, 4.8],
             comfort: [4.2, 4.3, 4.5, 4.6, 4.7, 4.7],
@@ -66,10 +73,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // Chart Instances
+    // Instancias de Gráficos (librería Chart.js)
     const charts = {};
 
-    // 4️⃣ Initialize Charts
+    // 4️⃣ Inicializar Gráficos
+    // Se usa el constructor new Chart() para crear gráficos visuales en los elementos <canvas>
     const initCharts = () => {
         Chart.defaults.color = '#8892b0';
         Chart.defaults.borderColor = 'rgba(255, 255, 255, 0.1)';
@@ -151,14 +159,16 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize Charts immediately
     initCharts();
 
-    // 5️⃣ Form Handling with Real-time Chart Update
+    // 5️⃣ Manejo del Formulario con Actualización en Tiempo Real
+    // Funciones usadas: addEventListener('submit'), e.preventDefault() para evitar recarga,
+    // y FormData() para capturar los valores de los inputs.
     const surveyForm = document.getElementById('survey-form');
     if (surveyForm) {
         surveyForm.addEventListener('submit', (e) => {
-            e.preventDefault();
+            e.preventDefault(); // Método preventDefault() evita el envío estándar del formulario
             const submitBtn = surveyForm.querySelector('.submit-btn');
             const originalText = submitBtn.textContent;
-            submitBtn.textContent = 'Procesando...';
+            submitBtn.textContent = 'Procesando...'; // Feedback visual
             submitBtn.disabled = true;
 
             // --- Capture Data ---
@@ -260,7 +270,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 6️⃣ Dynamic Reviews Loading
+    // 6️⃣ Carga Dinámica de Reseñas
+    // Función usada: innerHTML para insertar contenido HTML seguro dinámicamente.
     const reviewsContainer = document.getElementById('reviews-container');
     const sampleReviews = [
         { name: "María Rodríguez", rating: 5, text: "Una experiencia maravillosa. La vista era espectacular." },

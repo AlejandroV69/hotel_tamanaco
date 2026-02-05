@@ -19,10 +19,12 @@
 <body>
     <div class="app-container">
         <header class="main-header">
+            <!-- LOGO Y TÍTULO: Identidad del hotel (Uso de etiquetas <h1> y <p>) -->
             <div class="logo-container">
                 <h1>HOTEL TAMANACO</h1>
                 <p>CARACAS, VENEZUELA</p>
             </div>
+            <!-- BARRA DE NAVEGACIÓN: Botones para cambiar entre pestañas (Uso de <nav> y botones con data attributes) -->
             <nav class="main-nav">
                 <button class="nav-btn active" data-tab="inicio">Inicio</button>
                 <button class="nav-btn" data-tab="encuesta">Encuesta</button>
@@ -32,13 +34,16 @@
         </header>
 
         <main class="content-area">
-            <!-- SECCIÓN INICIO -->
+            <!-- SECCIÓN INICIO (Uso de <section> con ID único) -->
+            <!-- Esta sección es la página de bienvenida con información general -->
             <section id="inicio" class="tab-content active">
                 <div class="hero-section">
                     <div class="hero-content">
                         <h2>Bienvenido a la Excelencia</h2>
                         <p>Disfrute de una experiencia inolvidable en el corazón de Caracas. Lujo, confort y el mejor
                             servicio le esperan.</p>
+                        <!-- Botón CTA que redirige programáticamente a la pestaña de encuesta -->
+                        <!-- Función usada: onclick="document.querySelector(...).click()" para simular clic en pestaña -->
                         <button class="cta-btn"
                             onclick="document.querySelector('[data-tab=\'encuesta\']').click()">Evalúanos</button>
                     </div>
@@ -241,6 +246,7 @@
             </section>
 
             <!-- SECCIÓN RESULTADOS -->
+            <!-- Dashboard protegido por contraseña. Contiene <canvas> para gráficos de Chart.js -->
             <section id="resultados" class="tab-content">
                 <div class="dashboard-header">
                     <h2>Indicadores de Calidad</h2>
@@ -267,6 +273,7 @@
             </section>
 
             <!-- SECCIÓN OPINIONES -->
+            <!-- Contenedor vacío donde se inyectarán las reseñas usando JavaScript (appendChild) -->
             <section id="opiniones" class="tab-content">
                 <div class="reviews-header">
                     <h2>Lo que dicen nuestros huéspedes</h2>
